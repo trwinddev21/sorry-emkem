@@ -9,7 +9,7 @@ const TAUNTS = [
   "Chậm quá! 🐶",
   "Hụt rồi! 🌿",
   "Hehe~ 🍵",
-  "Hôm nay không được! 😼",
+  // "Hôm nay không được! 😼",
   "Trượt mất rồi! 🌸",
 ];
 
