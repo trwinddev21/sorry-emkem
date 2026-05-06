@@ -9,7 +9,7 @@ const APOLOGY_LINES = [
   },
   {
     emoji: "🐾",
-    text: "Tớ nói chuyện vụng về, nhưng thật sự chân thành so diii cậu huhhh.",
+    text: "Tớ nói chuyện vungve, đôi chút taynhanhhonnao nhưng thật sự chân thành so diii cậu huhhh.",
   },
   {
     emoji: "🐶",
