@@ -5,7 +5,7 @@ import "./ApologyCard.css";
 const APOLOGY_LINES = [
   {
     emoji: "🍵",
-    text: "Tớ thấy áy náy, có lỗi quá nên nghĩ ra cách cutesieuhotme này gửi cậu nè.",
+    text: "Tớ thấy áy náy, có lỗi quá nên nghĩ ra cách 'matcha gaugau meomeo' này gửi cậu nè.",
   },
   {
     emoji: "🐾",
