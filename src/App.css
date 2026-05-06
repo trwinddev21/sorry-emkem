@@ -1,0 +1,76 @@
+/* =========================================
+   APP ROOT — Layout & Background Layers
+   ========================================= */
+
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* --- Background Layers --- */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-texture {
+  background-color: #c8dcb8;
+  background-image:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(168, 197, 160, 0.6) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(90, 122, 78, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(212, 232, 204, 0.8) 0%,
+      transparent 40%
+    );
+  z-index: 0;
+}
+
+.bg-image {
+  background-image: url("/matcha_bg.png");
+  background-size: 380px 380px;
+  background-repeat: repeat;
+  opacity: 0.18;
+  z-index: 1;
+}
+
+.bg-overlay {
+  background: linear-gradient(
+    160deg,
+    rgba(232, 243, 224, 0.6) 0%,
+    rgba(168, 197, 160, 0.25) 40%,
+    rgba(90, 122, 78, 0.1) 100%
+  );
+  z-index: 2;
+}
+
+/* --- Main Content --- */
+.app-main {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .app-main {
+    padding: 16px 12px;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+}

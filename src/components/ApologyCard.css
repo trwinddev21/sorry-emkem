@@ -1,0 +1,420 @@
+/* =========================================
+   APOLOGY CARD
+   ========================================= */
+
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Decorative background blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1;
+}
+.blob-1 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(168, 197, 160, 0.7), transparent);
+  top: -60px;
+  left: -80px;
+  animation: float-gentle 6s ease-in-out infinite;
+}
+.blob-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(242, 184, 198, 0.5), transparent);
+  bottom: -40px;
+  right: -60px;
+  animation: float-gentle 8s ease-in-out infinite reverse;
+}
+
+/* Main card */
+.apology-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(232, 243, 224, 0.95) 50%,
+    rgba(255, 250, 240, 0.96) 100%
+  );
+  border-radius: var(--radius-xl);
+  padding: 36px 40px 28px;
+  box-shadow:
+    0 20px 60px rgba(58, 90, 64, 0.18),
+    0 4px 16px rgba(58, 90, 64, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(168, 197, 160, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.apology-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--matcha),
+    var(--matcha-light),
+    var(--gold),
+    var(--blush),
+    var(--matcha-light),
+    var(--matcha)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ---- Header ---- */
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mascot-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.mascot-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(200, 224, 192, 0.6),
+    rgba(232, 243, 224, 0.3)
+  );
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(90, 122, 78, 0.2);
+  animation:
+    float-gentle 4s ease-in-out infinite,
+    heartbeat 3s ease-in-out infinite 2s;
+  border: 3px solid rgba(168, 197, 160, 0.5);
+}
+
+.mascot-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(168, 197, 160, 0.3),
+    transparent 70%
+  );
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.header-badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.badge-green {
+  background: linear-gradient(135deg, var(--matcha-pale), var(--matcha-foam));
+  color: var(--matcha-dark);
+  border: 1.5px solid var(--matcha-light);
+}
+
+.badge-blush {
+  background: linear-gradient(135deg, #fde8ef, #fdf0f5);
+  color: #b0466a;
+  border: 1.5px solid #f2b8c6;
+}
+
+.card-title {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--matcha-dark);
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title-sub {
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-light);
+  opacity: 0.85;
+}
+
+/* ---- Divider ---- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  font-size: 1rem;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--matcha-light),
+    transparent
+  );
+  border-radius: 1px;
+}
+
+/* ---- Apology body ---- */
+.apology-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.apology-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 243, 224, 0.6),
+    rgba(255, 255, 255, 0.4)
+  );
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  border: 1.5px solid rgba(168, 197, 160, 0.3);
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.apology-line:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(90, 122, 78, 0.12);
+}
+
+.line-emoji {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.line-text {
+  font-size: clamp(0.88rem, 2.2vw, 0.97rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* ---- Pets row ---- */
+.pets-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 0 4px;
+}
+
+.pet-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pet-icon {
+  font-size: 2.2rem;
+  animation: sway 2.5s ease-in-out infinite;
+  display: block;
+}
+
+.pet-bubble-right .pet-icon {
+  animation-delay: -1.25s;
+}
+
+.pet-speech {
+  background: linear-gradient(135deg, var(--white), var(--matcha-foam));
+  border: 1.5px solid var(--matcha-light);
+  border-radius: 12px 12px 12px 0;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--matcha-dark);
+  box-shadow: 0 2px 8px rgba(90, 122, 78, 0.12);
+  white-space: nowrap;
+}
+
+.pet-bubble-right .pet-speech {
+  border-radius: 12px 12px 0 12px;
+}
+
+.matcha-cup {
+  font-size: 2.6rem;
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* ---- Question ---- */
+.question-wrap {
+  text-align: center;
+  margin: 6px 0 20px;
+}
+
+.question-text {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  font-weight: 800;
+  color: var(--matcha-dark);
+  margin-bottom: 4px;
+}
+
+.question-sub {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* ---- Buttons area ---- */
+.buttons-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  min-height: 130px;
+}
+
+/* Agree button */
+.btn-agree {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 40px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  font-weight: 800;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--matcha), var(--matcha-dark));
+  box-shadow:
+    0 6px 24px rgba(58, 90, 64, 0.35),
+    0 2px 8px rgba(58, 90, 64, 0.2);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.3s;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+  min-width: 240px;
+  letter-spacing: 0.3px;
+}
+
+.btn-agree:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(58, 90, 64, 0.45);
+  background: linear-gradient(135deg, var(--matcha-mid), var(--matcha));
+}
+
+.btn-agree:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-agree:disabled {
+  cursor: default;
+  animation: none;
+}
+
+.btn-agreed {
+  background: linear-gradient(135deg, #e8869e, var(--blush-dark)) !important;
+  box-shadow: 0 6px 24px rgba(232, 134, 158, 0.4) !important;
+  animation: heartbeat 1.5s ease-in-out 3 !important;
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+}
+
+.btn-ripple {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.8s linear forwards;
+  pointer-events: none;
+}
+
+/* ---- Footer ---- */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1.5px dashed rgba(168, 197, 160, 0.5);
+}
+
+.paw {
+  font-size: 1.1rem;
+  animation: wiggle 4s ease-in-out infinite;
+}
+
+.footer-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .apology-card {
+    padding: 24px 20px 20px;
+  }
+
+  .mascot-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .buttons-area {
+    min-height: 140px;
+  }
+
+  .btn-agree {
+    min-width: 200px;
+    padding: 14px 28px;
+  }
+}

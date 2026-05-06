@@ -1,0 +1,36 @@
+.particles-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.particle {
+  position: absolute;
+  user-select: none;
+  animation: float-particle linear forwards;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateX(0) translateY(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(calc(var(--drift) * 0.1)) translateY(-40px) scale(1) rotate(10deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(calc(var(--drift) * 0.5)) translateY(-45vh) scale(1.1) rotate(-10deg);
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(var(--drift)) translateY(-110vh) scale(0.8) rotate(20deg);
+    opacity: 0;
+  }
+}
