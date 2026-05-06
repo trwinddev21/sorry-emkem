@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import { getCachedVisitorInfo, sendTelegramNotification } from "../utils/telegram";
 import "./DisagreeButton.css";
 
 const TAUNTS = [
@@ -33,6 +34,7 @@ export default function DisagreeButton() {
   const [clickCount, setClickCount] = useState(0);
   const btnRef = useRef(null);
   const posInitialized = useRef(false);
+  const lastEscapeTime = useRef(0);
 
   // Initialize position after first render
   useEffect(() => {
@@ -44,6 +46,11 @@ export default function DisagreeButton() {
   }, []);
 
   const escape = useCallback(() => {
+    const now = Date.now();
+    // Cooldown 450ms để tránh việc di chuột quét qua nút đang trượt đi hoặc sự kiện touch kép gửi trùng tin nhắn
+    if (now - lastEscapeTime.current < 450) return;
+    lastEscapeTime.current = now;
+
     if (!btnRef.current) return;
 
     const rect = btnRef.current.getBoundingClientRect();
@@ -53,7 +60,22 @@ export default function DisagreeButton() {
     setPos(newPos);
     setTaunt(newTaunt);
     setFloatingMode(true);
-    setClickCount((prev) => prev + 1);
+    
+    setClickCount((prev) => {
+      const newCount = prev + 1;
+
+      // Gửi thông báo hụt nút về Telegram cho mỗi lần di chuột/bấm hụt
+      const notifyEscape = async () => {
+        const info = await getCachedVisitorInfo();
+        const msg = `😤 <b>[sorry-emkem] Tương tác:</b>\n\n` +
+                    `Đối phương vừa cố bấm hụt nút <b>Không đồng ý</b> lần thứ <b>${newCount}</b>! 😂\n` +
+                    `📍 <b>IP:</b> <code>${info.ip}</code> (${info.city}, ${info.country})`;
+        await sendTelegramNotification(msg);
+      };
+      notifyEscape();
+
+      return newCount;
+    });
   }, []);
 
   // Escape on hover too (sneaky!)

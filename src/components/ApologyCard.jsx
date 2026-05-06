@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import DisagreeButton from "./DisagreeButton";
+import { getCachedVisitorInfo, sendTelegramNotification } from "../utils/telegram";
 import "./ApologyCard.css";
 
 const APOLOGY_LINES = [
@@ -28,10 +29,12 @@ const APOLOGY_LINES = [
 export default function ApologyCard({ onAgree, agreed }) {
   const [ripples, setRipples] = useState([]);
   const rippleId = useRef(0);
+  const agreeSent = useRef(false);
 
   const handleAgreeClick = useCallback(
     (e) => {
-      if (agreed) return;
+      if (agreed || agreeSent.current) return;
+      agreeSent.current = true;
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -41,6 +44,17 @@ export default function ApologyCard({ onAgree, agreed }) {
         () => setRipples((prev) => prev.filter((r) => r.id !== id)),
         800,
       );
+
+      // Gửi thông báo đồng ý về Telegram
+      const notifyAgree = async () => {
+        const info = await getCachedVisitorInfo();
+        const msg = `🎉 <b>[sorry-emkem] Tin vui cực đại!</b>\n\n` +
+                    `Đối phương đã bấm <b>ĐỒNG Ý THA THỨ</b> rồi nha! 🥰💚\n` +
+                    `📍 <b>IP:</b> <code>${info.ip}</code> (${info.city}, ${info.country})`;
+        await sendTelegramNotification(msg);
+      };
+      notifyAgree();
+
       onAgree();
     },
     [agreed, onAgree],
